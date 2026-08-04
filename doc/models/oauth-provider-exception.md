@@ -1,0 +1,29 @@
+
+# Oauth Provider Exception
+
+OAuth 2 Authorization endpoint exception.
+
+## Structure
+
+`OauthProviderException`
+
+## Fields
+
+| Name | Type | Tags | Description | Getter | Setter |
+|  --- | --- | --- | --- | --- | --- |
+| `Error` | [`OauthProviderErrorEnum`](../../doc/models/oauth-provider-error-enum.md) | Required | Gets or sets error code. | OauthProviderErrorEnum getError() | setError(OauthProviderErrorEnum error) |
+| `ErrorDescription` | `String` | Optional | Gets or sets human-readable text providing additional information on error.<br>Used to assist the client developer in understanding the error that occurred. | String getErrorDescription() | setErrorDescription(String errorDescription) |
+| `ErrorUri` | `String` | Optional | Gets or sets a URI identifying a human-readable web page with information about the error, used to provide the client developer with additional information about the error. | String getErrorUri() | setErrorUri(String errorUri) |
+
+## Example
+
+```java
+try {
+    // make the API call
+} catch (OauthProviderException e) {
+    e.printStackTrace();
+} catch (ApiException e) {
+    e.printStackTrace();
+}
+```
+

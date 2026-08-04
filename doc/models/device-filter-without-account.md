@@ -1,0 +1,47 @@
+
+# Device Filter without Account
+
+Filter for devices without account.
+
+## Structure
+
+`DeviceFilterWithoutAccount`
+
+## Fields
+
+| Name | Type | Tags | Description | Getter | Setter |
+|  --- | --- | --- | --- | --- | --- |
+| `GroupName` | `String` | Optional | Only include devices that are in this device group. | String getGroupName() | setGroupName(String groupName) |
+| `ServicePlan` | `String` | Optional | Only include devices that have this service plan. | String getServicePlan() | setServicePlan(String servicePlan) |
+| `CustomFields` | [`List<CustomFields>`](../../doc/models/custom-fields.md) | Optional | Custom field names and values, if you want to only include devices that have matching values. | List<CustomFields> getCustomFields() | setCustomFields(List<CustomFields> customFields) |
+
+## Example
+
+```java
+import com.verizon.thingspace.models.CustomFields;
+import com.verizon.thingspace.models.DeviceFilterWithoutAccount;
+import java.util.Arrays;
+
+DeviceFilterWithoutAccount deviceFilterWithoutAccount = new DeviceFilterWithoutAccount.Builder()
+    .groupName("suspended devices")
+    .servicePlan("servicePlan2")
+    .customFields(Arrays.asList(
+        new CustomFields.Builder(
+            "key0",
+            "value2"
+        )
+        .build(),
+        new CustomFields.Builder(
+            "key0",
+            "value2"
+        )
+        .build(),
+        new CustomFields.Builder(
+            "key0",
+            "value2"
+        )
+        .build()
+    ))
+    .build();
+```
+

@@ -1,0 +1,28 @@
+
+# Aggregated Report Callback Result
+
+Aggregated usage report (Asynchronous).
+
+## Structure
+
+`AggregatedReportCallbackResult`
+
+## Fields
+
+| Name | Type | Tags | Description | Getter | Setter |
+|  --- | --- | --- | --- | --- | --- |
+| `Txid` | `String` | Optional | A unique string (UUID) that associates the request with the location report information that is sent in asynchronous callback message.ThingSpace will send a separate callback message for each device that was in the request. All of the callback messages will have a txid. | String getTxid() | setTxid(String txid) |
+| `Status` | [`AggregatedReportCallbackStatusEnum`](../../doc/models/aggregated-report-callback-status-enum.md) | Optional | QUEUED or COMPLETED. Requests for IoT devices with cacheMode=0 (cached) have status=COMPLETED; all other requests are QUEUED. | AggregatedReportCallbackStatusEnum getStatus() | setStatus(AggregatedReportCallbackStatusEnum status) |
+
+## Example
+
+```java
+import com.verizon.thingspace.models.AggregatedReportCallbackResult;
+import com.verizon.thingspace.models.AggregatedReportCallbackStatusEnum;
+
+AggregatedReportCallbackResult aggregatedReportCallbackResult = new AggregatedReportCallbackResult.Builder()
+    .txid("60c07fff-eeee-ffff-gggg-75e6a7c238f6")
+    .status(AggregatedReportCallbackStatusEnum.QUEUED)
+    .build();
+```
+

@@ -1,0 +1,277 @@
+# Software Management Licenses V3
+
+```java
+SoftwareManagementLicensesV3Controller softwareManagementLicensesV3Controller = client.getSoftwareManagementLicensesV3Controller();
+```
+
+## Class Name
+
+`SoftwareManagementLicensesV3Controller`
+
+## Methods
+
+* [Get Account Licenses Status](../../doc/controllers/software-management-licenses-v3.md#get-account-licenses-status)
+* [Assign Licenses to Devices](../../doc/controllers/software-management-licenses-v3.md#assign-licenses-to-devices)
+* [Remove Licenses from Devices](../../doc/controllers/software-management-licenses-v3.md#remove-licenses-from-devices)
+
+
+# Get Account Licenses Status
+
+The endpoint allows user to list license usage.
+
+```java
+CompletableFuture<ApiResponse<V3LicenseSummary>> getAccountLicensesStatusAsync(
+    final String acc,
+    final String lastSeenDeviceId)
+```
+
+## Authentication
+
+This endpoint requires [thingspace_oauth](../../doc/auth/oauth-2-client-credentials-grant.md) **AND** [VZ-M2M-Token](../../doc/auth/custom-header-signature.md)
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `acc` | `String` | Template, Required | Account identifier. |
+| `lastSeenDeviceId` | `String` | Query, Optional | Last seen device identifier. |
+
+## Server
+
+`Server.SOFTWARE_MANAGEMENT_V3`
+
+## Response Type
+
+**200**: Summary of license assignment.
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `getResult()` getter of this instance returns the response data which is of type [`V3LicenseSummary`](../../doc/models/v3-license-summary.md).
+
+## Example Usage
+
+```java
+String acc = "0000123456-00001";
+String lastSeenDeviceId = "0";
+
+softwareManagementLicensesV3Controller.getAccountLicensesStatusAsync(acc, lastSeenDeviceId).thenAccept(result -> {
+    // TODO success callback handler
+    System.out.println(result);
+}).exceptionally(exception -> {
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof FotaV3ResultException) {
+        FotaV3ResultException fotaV3ResultException = (FotaV3ResultException) cause;
+        fotaV3ResultException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
+    return null;
+});
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "accountName": "0000123456-00001",
+  "assignedLicenses": 4319,
+  "hasMoreData": true,
+  "lastSeenDeviceId": "1000",
+  "maxPageSize": 1000,
+  "deviceList": [
+    {
+      "deviceId": "15-digit IMEI",
+      "assignmentTime": "2017-11-29 20:15:42.738 +0000 UTC"
+    },
+    {
+      "deviceId": "15-digit IMEI",
+      "assignmentTime": "2017-11-29 20:15:42.738 +0000 UTC"
+    }
+  ]
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Unexpected error. | [`FotaV3ResultException`](../../doc/models/fota-v3-result-exception.md) |
+
+
+# Assign Licenses to Devices
+
+This endpoint allows user to assign licenses to a list of devices.
+
+```java
+CompletableFuture<ApiResponse<V3LicenseAssignedRemovedResult>> assignLicensesToDevicesAsync(
+    final String acc,
+    final V3LicenseIMEI body)
+```
+
+## Authentication
+
+This endpoint requires [thingspace_oauth](../../doc/auth/oauth-2-client-credentials-grant.md) **AND** [VZ-M2M-Token](../../doc/auth/custom-header-signature.md)
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `acc` | `String` | Template, Required | Account identifier. |
+| `body` | [`V3LicenseIMEI`](../../doc/models/v3-license-imei.md) | Body, Required | License assignment. |
+
+## Server
+
+`Server.SOFTWARE_MANAGEMENT_V3`
+
+## Response Type
+
+**200**: License assignment result.
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `getResult()` getter of this instance returns the response data which is of type [`V3LicenseAssignedRemovedResult`](../../doc/models/v3-license-assigned-removed-result.md).
+
+## Example Usage
+
+```java
+String acc = "0000123456-00001";
+V3LicenseIMEI body = new V3LicenseIMEI.Builder(
+    Arrays.asList(
+        "15-digit IMEI",
+        "15-digit IMEI"
+    )
+)
+.build();
+
+softwareManagementLicensesV3Controller.assignLicensesToDevicesAsync(acc, body).thenAccept(result -> {
+    // TODO success callback handler
+    System.out.println(result);
+}).exceptionally(exception -> {
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof FotaV3ResultException) {
+        FotaV3ResultException fotaV3ResultException = (FotaV3ResultException) cause;
+        fotaV3ResultException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
+    return null;
+});
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "accountName": "0000123456-00001",
+  "licUsedCount": 2,
+  "licCount": 1000,
+  "deviceList": [
+    {
+      "deviceId": "15-digit IMEI",
+      "status": "UpgradePending",
+      "resultReason": "Upgrade pending, the device upgrade is estimated to be scheduled for 06 Oct 22 18:05 UTC",
+      "updatedTime": "2022-08-05T21:05:27.129Z",
+      "recentAttemptTime": "2022-10-05T21:05:01.19Z",
+      "nextAttemptTime": "2022-10-06T18:35:00Z"
+    }
+  ]
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Unexpected error. | [`FotaV3ResultException`](../../doc/models/fota-v3-result-exception.md) |
+
+
+# Remove Licenses from Devices
+
+This endpoint allows user to remove licenses from a list of devices.
+
+```java
+CompletableFuture<ApiResponse<V3LicenseAssignedRemovedResult>> removeLicensesFromDevicesAsync(
+    final String acc,
+    final V3LicenseIMEI body)
+```
+
+## Authentication
+
+This endpoint requires [thingspace_oauth](../../doc/auth/oauth-2-client-credentials-grant.md) **AND** [VZ-M2M-Token](../../doc/auth/custom-header-signature.md)
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `acc` | `String` | Template, Required | Account identifier. |
+| `body` | [`V3LicenseIMEI`](../../doc/models/v3-license-imei.md) | Body, Required | License removal. |
+
+## Server
+
+`Server.SOFTWARE_MANAGEMENT_V3`
+
+## Response Type
+
+**200**: License removal result.
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `getResult()` getter of this instance returns the response data which is of type [`V3LicenseAssignedRemovedResult`](../../doc/models/v3-license-assigned-removed-result.md).
+
+## Example Usage
+
+```java
+String acc = "0000123456-00001";
+V3LicenseIMEI body = new V3LicenseIMEI.Builder(
+    Arrays.asList(
+        "15-digit IMEI",
+        "15-digit IMEI",
+        "15-digit IMEI"
+    )
+)
+.build();
+
+softwareManagementLicensesV3Controller.removeLicensesFromDevicesAsync(acc, body).thenAccept(result -> {
+    // TODO success callback handler
+    System.out.println(result);
+}).exceptionally(exception -> {
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof FotaV3ResultException) {
+        FotaV3ResultException fotaV3ResultException = (FotaV3ResultException) cause;
+        fotaV3ResultException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
+    return null;
+});
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "accountName": "0000123456-00001",
+  "licUsedCount": 998,
+  "licCount": 1000,
+  "deviceList": [
+    {
+      "deviceId": "15-digit IMEI",
+      "status": "UpgradePending",
+      "resultReason": "Upgrade pending, the device upgrade is estimated to be scheduled for 06 Oct 22 18:05 UTC",
+      "updatedTime": "2022-08-05T21:05:27.129Z",
+      "recentAttemptTime": "2022-10-05T21:05:01.19Z",
+      "nextAttemptTime": "2022-10-06T18:35:00Z"
+    }
+  ]
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Unexpected error. | [`FotaV3ResultException`](../../doc/models/fota-v3-result-exception.md) |
+

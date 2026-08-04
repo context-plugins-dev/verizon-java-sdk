@@ -1,0 +1,99 @@
+# Diagnostics Settings
+
+```java
+DiagnosticsSettingsController diagnosticsSettingsController = client.getDiagnosticsSettingsController();
+```
+
+## Class Name
+
+`DiagnosticsSettingsController`
+
+
+# List Diagnostics Settings
+
+This endpoint retrieves diagnostics settings synchronously.
+
+```java
+CompletableFuture<ApiResponse<List<DiagnosticObservationSetting>>> listDiagnosticsSettingsAsync(
+    final String accountName,
+    final String devices)
+```
+
+## Authentication
+
+This endpoint requires [thingspace_oauth](../../doc/auth/oauth-2-client-credentials-grant.md) **AND** [VZ-M2M-Token](../../doc/auth/custom-header-signature.md)
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `accountName` | `String` | Query, Required | Account identifier. |
+| `devices` | `String` | Query, Required | Devices list formatted as "id, kind" |
+
+## Server
+
+`Server.DEVICE_DIAGNOSTICS`
+
+## Response Type
+
+**200**: Diagnostic settings.
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `getResult()` getter of this instance returns the response data which is of type [`List<DiagnosticObservationSetting>`](../../doc/models/diagnostic-observation-setting.md).
+
+## Example Usage
+
+```java
+String accountName = "0000123456-00001";
+String devices = "864508030026238,IMEI";
+
+diagnosticsSettingsController.listDiagnosticsSettingsAsync(accountName, devices).thenAccept(result -> {
+    // TODO success callback handler
+    System.out.println(result);
+}).exceptionally(exception -> {
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof DeviceDiagnosticsResultException) {
+        DeviceDiagnosticsResultException deviceDiagnosticsResultException = (DeviceDiagnosticsResultException) cause;
+        deviceDiagnosticsResultException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
+    return null;
+});
+```
+
+## Example Response *(as JSON)*
+
+```json
+[
+  {
+    "accountName": "string",
+    "device": {
+      "id": "864508030026238",
+      "kind": "IMEI"
+    },
+    "attributes": [
+      {
+        "name": "MANUFACTURER",
+        "value": "string",
+        "createdOn": "2019-09-07T23:08:03.532Z",
+        "isObservable": true,
+        "isObserving": true,
+        "frequency": {
+          "value": 5,
+          "unit": "SECOND"
+        }
+      }
+    ]
+  }
+]
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| Default | Error response. | [`DeviceDiagnosticsResultException`](../../doc/models/device-diagnostics-result-exception.md) |
+

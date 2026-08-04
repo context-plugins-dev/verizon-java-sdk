@@ -1,0 +1,25 @@
+
+# SMS Options Send Request
+
+## Structure
+
+`SMSOptionsSendRequest`
+
+## Fields
+
+| Name | Type | Tags | Description | Getter | Setter |
+|  --- | --- | --- | --- | --- | --- |
+| `ServicePlan` | `String` | Optional | **Constraints**: *Minimum Length*: `3`, *Maximum Length*: `32`, *Pattern*: `^[A-Za-z0-9 ]{3,32}$` | String getServicePlan() | setServicePlan(String servicePlan) |
+| `SmsMessage` | `String` | Optional | **Constraints**: *Minimum Length*: `3`, *Maximum Length*: `64`, *Pattern*: `^[A-Za-z0-9 ]{3,64}$` | String getSmsMessage() | setSmsMessage(String smsMessage) |
+
+## Example
+
+```java
+import com.verizon.thingspace.models.SMSOptionsSendRequest;
+
+SMSOptionsSendRequest sMSOptionsSendRequest = new SMSOptionsSendRequest.Builder()
+    .servicePlan("the name of a service plan")
+    .smsMessage("A text message")
+    .build();
+```
+

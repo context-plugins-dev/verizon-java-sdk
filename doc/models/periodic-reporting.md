@@ -1,0 +1,30 @@
+
+# Periodic Reporting
+
+The units and values of the time interval for the sensor to send a report
+
+## Structure
+
+`PeriodicReporting`
+
+## Fields
+
+| Name | Type | Tags | Description | Getter | Setter |
+|  --- | --- | --- | --- | --- | --- |
+| `Unit` | [`UnitEnum`](../../doc/models/unit-enum.md) | Optional | - | UnitEnum getUnit() | setUnit(UnitEnum unit) |
+| `Hours` | `Integer` | Optional | whole numbers from 0 to 24 | Integer getHours() | setHours(Integer hours) |
+| `Minutes` | `Integer` | Optional | whole numbers from 0 to 59 | Integer getMinutes() | setMinutes(Integer minutes) |
+
+## Example
+
+```java
+import com.verizon.thingspace.models.PeriodicReporting;
+import com.verizon.thingspace.models.UnitEnum;
+
+PeriodicReporting periodicReporting = new PeriodicReporting.Builder()
+    .unit(UnitEnum.MINUTES)
+    .hours(0)
+    .minutes(12)
+    .build();
+```
+

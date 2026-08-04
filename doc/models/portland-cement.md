@@ -1,0 +1,26 @@
+
+# Portland Cement
+
+Indicates the surface of the roadway is portland cement.
+
+## Structure
+
+`PortlandCement`
+
+## Fields
+
+| Name | Type | Tags | Description | Getter | Setter |
+|  --- | --- | --- | --- | --- | --- |
+| `Type` | [`Type6Enum`](../../doc/models/type-6-enum.md) | Optional | Indicates the type of portland cement.<br><br>**Default**: `Type6Enum.TRAVELED` | Type6Enum getType() | setType(Type6Enum type) |
+
+## Example
+
+```java
+import com.verizon.thingspace.models.PortlandCement;
+import com.verizon.thingspace.models.Type6Enum;
+
+PortlandCement portlandCement = new PortlandCement.Builder()
+    .type(Type6Enum.TRAVELED)
+    .build();
+```
+

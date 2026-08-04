@@ -1,0 +1,25 @@
+
+# Fota V3 Callback Registration Result
+
+Callback registration information.
+
+## Structure
+
+`FotaV3CallbackRegistrationResult`
+
+## Fields
+
+| Name | Type | Tags | Description | Getter | Setter |
+|  --- | --- | --- | --- | --- | --- |
+| `Url` | `String` | Optional | Callback URL. | String getUrl() | setUrl(String url) |
+
+## Example
+
+```java
+import com.verizon.thingspace.models.FotaV3CallbackRegistrationResult;
+
+FotaV3CallbackRegistrationResult fotaV3CallbackRegistrationResult = new FotaV3CallbackRegistrationResult.Builder()
+    .url("https://255.255.11.135:50559/CallbackListener/FirmwareServiceMessages.asmx")
+    .build();
+```
+

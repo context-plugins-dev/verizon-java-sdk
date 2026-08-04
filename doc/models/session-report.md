@@ -1,0 +1,38 @@
+
+# Session Report
+
+Session report for a device.
+
+## Structure
+
+`SessionReport`
+
+## Fields
+
+| Name | Type | Tags | Description | Getter | Setter |
+|  --- | --- | --- | --- | --- | --- |
+| `Id` | `String` | Required | The 10-digit ID of the device. | String getId() | setId(String id) |
+| `Txid` | `String` | Required | A unique string (UUID) that associates the request with the location report information that is sent in asynchronous callback message.ThingSpace will send a separate callback message for each device that was in the request. All of the callback messages will have a txid. | String getTxid() | setTxid(String txid) |
+| `Sessions` | [`List<DailyUsageItem>`](../../doc/models/daily-usage-item.md) | Optional | An object containing the start and end time of the session with the amount of data transferred. | List<DailyUsageItem> getSessions() | setSessions(List<DailyUsageItem> sessions) |
+
+## Example
+
+```java
+import com.verizon.thingspace.models.DailyUsageItem;
+import com.verizon.thingspace.models.SessionReport;
+import java.util.Arrays;
+
+SessionReport sessionReport = new SessionReport.Builder(
+    "id0",
+    "60c07fff-eeee-ffff-gggg-75e6a7c238f6"
+)
+.sessions(Arrays.asList(
+        new DailyUsageItem.Builder()
+            .startTime("startTime4")
+            .endTime("endTime8")
+            .numBytes(106)
+            .build()
+    ))
+.build();
+```
+

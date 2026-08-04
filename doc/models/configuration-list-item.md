@@ -1,0 +1,32 @@
+
+# Configuration List Item
+
+The ConfigurationList's item that contains the configuration identifier, name, description and the active flag.
+
+## Structure
+
+`ConfigurationListItem`
+
+## Fields
+
+| Name | Type | Tags | Description | Getter | Setter |
+|  --- | --- | --- | --- | --- | --- |
+| `Id` | `String` | Required | The generated ID (UUID v4) for the configuration. It has to be used when asking for changing any of the configuration parameters.<br><br>**Constraints**: *Minimum Length*: `32`, *Maximum Length*: `36`, *Pattern*: `^[0-9a-fA-F]{8}-?[0-9a-fA-F]{4}-?4[0-9a-fA-F]{3}-?[89abAB][0-9a-fA-F]{3}-?[0-9a-fA-F]{12}$` | String getId() | setId(String id) |
+| `Name` | `String` | Optional | Name of the configuration.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `256`, *Pattern*: ``^[\w\+\-!()\`\[\]{=};\"':,.\/<>?\|\s]+$`` | String getName() | setName(String name) |
+| `Description` | `String` | Optional | Description of the configuration.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `2048`, *Pattern*: ``^[\w\+\-!()\`\[\]{=};\"':,.\/<>?\|\s]+$`` | String getDescription() | setDescription(String description) |
+| `IsActive` | `boolean` | Required | - | boolean getIsActive() | setIsActive(boolean isActive) |
+
+## Example
+
+```java
+import com.verizon.thingspace.models.ConfigurationListItem;
+
+ConfigurationListItem configurationListItem = new ConfigurationListItem.Builder(
+    "a4fcd16a-343d-4527-8203-2f46e3e4ff4b",
+    false
+)
+.name("name6")
+.description("description4")
+.build();
+```
+

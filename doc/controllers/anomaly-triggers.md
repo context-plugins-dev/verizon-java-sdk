@@ -1,0 +1,324 @@
+# Anomaly Triggers
+
+```java
+AnomalyTriggersController anomalyTriggersController = client.getAnomalyTriggersController();
+```
+
+## Class Name
+
+`AnomalyTriggersController`
+
+## Methods
+
+* [List Anomaly Detection Triggers](../../doc/controllers/anomaly-triggers.md#list-anomaly-detection-triggers)
+* [Update Anomaly Detection Trigger](../../doc/controllers/anomaly-triggers.md#update-anomaly-detection-trigger)
+* [Create Anomaly Detection Trigger](../../doc/controllers/anomaly-triggers.md#create-anomaly-detection-trigger)
+* [List Anomaly Detection Trigger Settings](../../doc/controllers/anomaly-triggers.md#list-anomaly-detection-trigger-settings)
+* [Delete Anomaly Detection Trigger](../../doc/controllers/anomaly-triggers.md#delete-anomaly-detection-trigger)
+
+
+# List Anomaly Detection Triggers
+
+This corresponds to the M2M-MC SOAP interface, `GetTriggers`.
+
+```java
+CompletableFuture<ApiResponse<List<GetTriggerResponseList>>> listAnomalyDetectionTriggersAsync()
+```
+
+## Authentication
+
+This endpoint requires [thingspace_oauth](../../doc/auth/oauth-2-client-credentials-grant.md) **AND** [VZ-M2M-Token](../../doc/auth/custom-header-signature.md)
+
+## Response Type
+
+**200**: List of triggers associated to a Contact
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `getResult()` getter of this instance returns the response data which is of type [`List<GetTriggerResponseList>`](../../doc/models/get-trigger-response-list.md).
+
+## Example Usage
+
+```java
+anomalyTriggersController.listAnomalyDetectionTriggersAsync().thenAccept(result -> {
+    // TODO success callback handler
+    System.out.println(result);
+}).exceptionally(exception -> {
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof IntelligenceResultException) {
+        IntelligenceResultException intelligenceResultException = (IntelligenceResultException) cause;
+        intelligenceResultException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
+    return null;
+});
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad request | [`IntelligenceResultException`](../../doc/models/intelligence-result-exception.md) |
+| 401 | Unauthorized | [`IntelligenceResultException`](../../doc/models/intelligence-result-exception.md) |
+| 403 | Forbidden | [`IntelligenceResultException`](../../doc/models/intelligence-result-exception.md) |
+| 404 | Not Found / Does not exist | [`IntelligenceResultException`](../../doc/models/intelligence-result-exception.md) |
+| 406 | Format / Request Unacceptable | [`IntelligenceResultException`](../../doc/models/intelligence-result-exception.md) |
+| 429 | Too many requests | [`IntelligenceResultException`](../../doc/models/intelligence-result-exception.md) |
+| Default | Error response | [`IntelligenceResultException`](../../doc/models/intelligence-result-exception.md) |
+
+
+# Update Anomaly Detection Trigger
+
+This corresponds to the M2M-MC SOAP interface, `UpdateTriggerRequest`.
+
+```java
+CompletableFuture<ApiResponse<AnomalyDetectionTrigger>> updateAnomalyDetectionTriggerAsync(
+    final UpdateTriggerRequest body)
+```
+
+## Authentication
+
+This endpoint requires [thingspace_oauth](../../doc/auth/oauth-2-client-credentials-grant.md) **AND** [VZ-M2M-Token](../../doc/auth/custom-header-signature.md)
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `body` | [`UpdateTriggerRequest`](../../doc/models/update-trigger-request.md) | Body, Required | Update Trigger Request |
+
+## Response Type
+
+**200**: Trigger ID
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `getResult()` getter of this instance returns the response data which is of type [`AnomalyDetectionTrigger`](../../doc/models/anomaly-detection-trigger.md).
+
+## Example Usage
+
+```java
+UpdateTriggerRequest body = new UpdateTriggerRequest.Builder()
+    .anomalyTriggerRequest(new AnomalyTriggerRequest.Builder()
+        .accountNames("0000123456-00001")
+        .includeAbnormal(true)
+        .includeVeryAbnormal(true)
+        .includeUnderExpectedUsage(true)
+        .includeOverExpectedUsage(true)
+        .build())
+    .build();
+
+anomalyTriggersController.updateAnomalyDetectionTriggerAsync(body).thenAccept(result -> {
+    // TODO success callback handler
+    System.out.println(result);
+}).exceptionally(exception -> {
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof IntelligenceResultException) {
+        IntelligenceResultException intelligenceResultException = (IntelligenceResultException) cause;
+        intelligenceResultException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
+    return null;
+});
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad request | [`IntelligenceResultException`](../../doc/models/intelligence-result-exception.md) |
+| 401 | Unauthorized | [`IntelligenceResultException`](../../doc/models/intelligence-result-exception.md) |
+| 403 | Forbidden | [`IntelligenceResultException`](../../doc/models/intelligence-result-exception.md) |
+| 404 | Not Found / Does not exist | [`IntelligenceResultException`](../../doc/models/intelligence-result-exception.md) |
+| 406 | Format / Request Unacceptable | [`IntelligenceResultException`](../../doc/models/intelligence-result-exception.md) |
+| 429 | Too many requests | [`IntelligenceResultException`](../../doc/models/intelligence-result-exception.md) |
+| Default | Error response | [`IntelligenceResultException`](../../doc/models/intelligence-result-exception.md) |
+
+
+# Create Anomaly Detection Trigger
+
+This corresponds to the M2M-MC SOAP interface, `CreateTrigger`.
+
+```java
+CompletableFuture<ApiResponse<AnomalyDetectionTrigger>> createAnomalyDetectionTriggerAsync(
+    final CreateTriggerRequest body)
+```
+
+## Authentication
+
+This endpoint requires [thingspace_oauth](../../doc/auth/oauth-2-client-credentials-grant.md) **AND** [VZ-M2M-Token](../../doc/auth/custom-header-signature.md)
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `body` | [`CreateTriggerRequest`](../../doc/models/create-trigger-request.md) | Body, Required | Create Trigger Request |
+
+## Response Type
+
+**200**: Trigger ID
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `getResult()` getter of this instance returns the response data which is of type [`AnomalyDetectionTrigger`](../../doc/models/anomaly-detection-trigger.md).
+
+## Example Usage
+
+```java
+CreateTriggerRequest body = new CreateTriggerRequest.Builder()
+    .anomalyTriggerRequest(new AnomalyTriggerRequest.Builder()
+        .accountNames("0000123456-00001")
+        .includeAbnormal(true)
+        .includeVeryAbnormal(true)
+        .includeUnderExpectedUsage(true)
+        .includeOverExpectedUsage(true)
+        .build())
+    .build();
+
+anomalyTriggersController.createAnomalyDetectionTriggerAsync(body).thenAccept(result -> {
+    // TODO success callback handler
+    System.out.println(result);
+}).exceptionally(exception -> {
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof IntelligenceResultException) {
+        IntelligenceResultException intelligenceResultException = (IntelligenceResultException) cause;
+        intelligenceResultException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
+    return null;
+});
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad request | [`IntelligenceResultException`](../../doc/models/intelligence-result-exception.md) |
+| 401 | Unauthorized | [`IntelligenceResultException`](../../doc/models/intelligence-result-exception.md) |
+| 403 | Forbidden | [`IntelligenceResultException`](../../doc/models/intelligence-result-exception.md) |
+| 404 | Not Found / Does not exist | [`IntelligenceResultException`](../../doc/models/intelligence-result-exception.md) |
+| 406 | Format / Request Unacceptable | [`IntelligenceResultException`](../../doc/models/intelligence-result-exception.md) |
+| 429 | Too many requests | [`IntelligenceResultException`](../../doc/models/intelligence-result-exception.md) |
+| Default | Error response | [`IntelligenceResultException`](../../doc/models/intelligence-result-exception.md) |
+
+
+# List Anomaly Detection Trigger Settings
+
+This corresponds to the M2M-MC SOAP interface, `GetTriggers`.
+
+```java
+CompletableFuture<ApiResponse<List<GetTriggerResponseList>>> listAnomalyDetectionTriggerSettingsAsync(
+    final String triggerId)
+```
+
+## Authentication
+
+This endpoint requires [thingspace_oauth](../../doc/auth/oauth-2-client-credentials-grant.md) **AND** [VZ-M2M-Token](../../doc/auth/custom-header-signature.md)
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `triggerId` | `String` | Template, Required | trigger ID |
+
+## Response Type
+
+**200**: Trigger information associated to a Trigger Id
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `getResult()` getter of this instance returns the response data which is of type [`List<GetTriggerResponseList>`](../../doc/models/get-trigger-response-list.md).
+
+## Example Usage
+
+```java
+String triggerId = "be1b5958-3e11-41db-9abd-b1b7618c0035";
+
+anomalyTriggersController.listAnomalyDetectionTriggerSettingsAsync(triggerId).thenAccept(result -> {
+    // TODO success callback handler
+    System.out.println(result);
+}).exceptionally(exception -> {
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof IntelligenceResultException) {
+        IntelligenceResultException intelligenceResultException = (IntelligenceResultException) cause;
+        intelligenceResultException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
+    return null;
+});
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Bad request | [`IntelligenceResultException`](../../doc/models/intelligence-result-exception.md) |
+| 401 | Unauthorized | [`IntelligenceResultException`](../../doc/models/intelligence-result-exception.md) |
+| 403 | Forbidden | [`IntelligenceResultException`](../../doc/models/intelligence-result-exception.md) |
+| 404 | Not Found / Does not exist | [`IntelligenceResultException`](../../doc/models/intelligence-result-exception.md) |
+| 406 | Format / Request Unacceptable | [`IntelligenceResultException`](../../doc/models/intelligence-result-exception.md) |
+| 429 | Too many requests | [`IntelligenceResultException`](../../doc/models/intelligence-result-exception.md) |
+| Default | Error response | [`IntelligenceResultException`](../../doc/models/intelligence-result-exception.md) |
+
+
+# Delete Anomaly Detection Trigger
+
+Deletes a specific trigger ID
+
+```java
+CompletableFuture<ApiResponse<AnomalyDetectionTrigger>> deleteAnomalyDetectionTriggerAsync(
+    final String triggerId)
+```
+
+## Authentication
+
+This endpoint requires [thingspace_oauth](../../doc/auth/oauth-2-client-credentials-grant.md) **AND** [VZ-M2M-Token](../../doc/auth/custom-header-signature.md)
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `triggerId` | `String` | Template, Required | The trigger ID to be deleted |
+
+## Response Type
+
+**200**: The ID of the deleted trigger is returned
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `getResult()` getter of this instance returns the response data which is of type [`AnomalyDetectionTrigger`](../../doc/models/anomaly-detection-trigger.md).
+
+## Example Usage
+
+```java
+String triggerId = "be1b5958-3e11-41db-9abd-b1b7618c0035";
+
+anomalyTriggersController.deleteAnomalyDetectionTriggerAsync(triggerId).thenAccept(result -> {
+    // TODO success callback handler
+    System.out.println(result);
+}).exceptionally(exception -> {
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof IntelligenceResultException) {
+        IntelligenceResultException intelligenceResultException = (IntelligenceResultException) cause;
+        intelligenceResultException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
+    return null;
+});
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| Default | Error response | [`IntelligenceResultException`](../../doc/models/intelligence-result-exception.md) |
+

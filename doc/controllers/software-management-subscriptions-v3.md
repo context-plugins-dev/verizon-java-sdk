@@ -1,0 +1,81 @@
+# Software Management Subscriptions V3
+
+```java
+SoftwareManagementSubscriptionsV3Controller softwareManagementSubscriptionsV3Controller = client.getSoftwareManagementSubscriptionsV3Controller();
+```
+
+## Class Name
+
+`SoftwareManagementSubscriptionsV3Controller`
+
+
+# Get Account Subscription Status
+
+This endpoint retrieves a FOTA subscription by account.
+
+```java
+CompletableFuture<ApiResponse<FotaV3Subscription>> getAccountSubscriptionStatusAsync(
+    final String acc)
+```
+
+## Authentication
+
+This endpoint requires [thingspace_oauth](../../doc/auth/oauth-2-client-credentials-grant.md) **AND** [VZ-M2M-Token](../../doc/auth/custom-header-signature.md)
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `acc` | `String` | Template, Required | Account identifier. |
+
+## Server
+
+`Server.SOFTWARE_MANAGEMENT_V3`
+
+## Response Type
+
+**200**: FOTA Subscription.
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `getResult()` getter of this instance returns the response data which is of type [`FotaV3Subscription`](../../doc/models/fota-v3-subscription.md).
+
+## Example Usage
+
+```java
+String acc = "0000123456-00001";
+
+softwareManagementSubscriptionsV3Controller.getAccountSubscriptionStatusAsync(acc).thenAccept(result -> {
+    // TODO success callback handler
+    System.out.println(result);
+}).exceptionally(exception -> {
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof FotaV3ResultException) {
+        FotaV3ResultException fotaV3ResultException = (FotaV3ResultException) cause;
+        fotaV3ResultException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
+    return null;
+});
+```
+
+## Example Response *(as JSON)*
+
+```json
+{
+  "accountName": "0000123456-000001",
+  "purchaseType": "TS-HFOTA-EVNT,TS-HFOTA-MRC",
+  "licenseCount": 500,
+  "licenseUsedCount": 400,
+  "updateTime": "2020-09-17T21:11:32.170Z"
+}
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Unexpected error. | [`FotaV3ResultException`](../../doc/models/fota-v3-result-exception.md) |
+

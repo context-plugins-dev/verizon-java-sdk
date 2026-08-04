@@ -1,0 +1,29 @@
+
+# Firmware IMEI
+
+A list of IMEIs for devices to be synchronized between ThingSpace and the FOTA server.
+
+## Structure
+
+`FirmwareIMEI`
+
+## Fields
+
+| Name | Type | Tags | Description | Getter | Setter |
+|  --- | --- | --- | --- | --- | --- |
+| `DeviceList` | `List<String>` | Required | Device IMEI list.<br><br>**Constraints**: *Maximum Items*: `1000` | List<String> getDeviceList() | setDeviceList(List<String> deviceList) |
+
+## Example
+
+```java
+import com.verizon.thingspace.models.FirmwareIMEI;
+import java.util.Arrays;
+
+FirmwareIMEI firmwareIMEI = new FirmwareIMEI.Builder(
+    Arrays.asList(
+        "15-digit IMEI"
+    )
+)
+.build();
+```
+

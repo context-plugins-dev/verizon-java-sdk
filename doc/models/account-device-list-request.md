@@ -1,0 +1,60 @@
+
+# Account Device List Request
+
+Request for listing account devices.
+
+## Structure
+
+`AccountDeviceListRequest`
+
+## Fields
+
+| Name | Type | Tags | Description | Getter | Setter |
+|  --- | --- | --- | --- | --- | --- |
+| `AccountName` | `String` | Optional | The billing account for which a list of devices is returned. If you don't specify an accountName, the list includes all devices to which you have access. | String getAccountName() | setAccountName(String accountName) |
+| `DeviceId` | [`DeviceId`](../../doc/models/device-id.md) | Optional | An identifier for a single device. | DeviceId getDeviceId() | setDeviceId(DeviceId deviceId) |
+| `Filter` | [`AccountDeviceListFilter`](../../doc/models/account-device-list-filter.md) | Optional | Filter for a list of devices. | AccountDeviceListFilter getFilter() | setFilter(AccountDeviceListFilter filter) |
+| `CurrentState` | `String` | Optional | The name of a device state, to only include devices in that state. | String getCurrentState() | setCurrentState(String currentState) |
+| `CustomFields` | [`List<CustomFields>`](../../doc/models/custom-fields.md) | Optional | Custom field names and values, if you want to only include devices that have matching values. | List<CustomFields> getCustomFields() | setCustomFields(List<CustomFields> customFields) |
+| `Earliest` | `String` | Optional | Only include devices that were added after this date and time. | String getEarliest() | setEarliest(String earliest) |
+| `GroupName` | `String` | Optional | Only include devices that are in this device group. | String getGroupName() | setGroupName(String groupName) |
+| `Latest` | `String` | Optional | Only include devices that were added before this date and time. | String getLatest() | setLatest(String latest) |
+| `ServicePlan` | `String` | Optional | Only include devices that have this service plan. | String getServicePlan() | setServicePlan(String servicePlan) |
+| `MaxNumberOfDevices` | `Integer` | Optional | **Constraints**: `>= 0`, `<= 500` | Integer getMaxNumberOfDevices() | setMaxNumberOfDevices(Integer maxNumberOfDevices) |
+| `LargestDeviceIdSeen` | `Long` | Optional | **Constraints**: `>= 0`, `<= 0` | Long getLargestDeviceIdSeen() | setLargestDeviceIdSeen(Long largestDeviceIdSeen) |
+
+## Example
+
+```java
+import com.verizon.thingspace.models.AccountDeviceListFilter;
+import com.verizon.thingspace.models.AccountDeviceListRequest;
+import com.verizon.thingspace.models.CustomFields;
+import com.verizon.thingspace.models.DeviceIdSearch;
+import java.util.Arrays;
+
+AccountDeviceListRequest accountDeviceListRequest = new AccountDeviceListRequest.Builder()
+    .accountName("0786890242-00001")
+    .deviceId(null)
+    .filter(new AccountDeviceListFilter.Builder(
+        Arrays.asList(
+            new DeviceIdSearch.Builder(
+                "4259",
+                "iccid"
+            )
+            .startswith("startswith8")
+            .endswith("endswith0")
+            .build()
+        )
+    )
+    .build())
+    .currentState("currentState8")
+    .customFields(Arrays.asList(
+        new CustomFields.Builder(
+            "key0",
+            "value2"
+        )
+        .build()
+    ))
+    .build();
+```
+

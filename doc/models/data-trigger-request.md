@@ -1,0 +1,27 @@
+
+# Data Trigger Request
+
+## Structure
+
+`DataTriggerRequest`
+
+## Fields
+
+| Name | Type | Tags | Description | Getter | Setter |
+|  --- | --- | --- | --- | --- | --- |
+| `Comparator` | `String` | Optional | **Constraints**: *Minimum Length*: `3`, *Maximum Length*: `32`, *Pattern*: `^[A-Za-z0-9]{3,32}$` | String getComparator() | setComparator(String comparator) |
+| `Threshold` | `Integer` | Optional | **Constraints**: `>= 0`, `<= 100` | Integer getThreshold() | setThreshold(Integer threshold) |
+| `ThresholdUnit` | `String` | Optional | **Constraints**: *Minimum Length*: `3`, *Maximum Length*: `32`, *Pattern*: `^[A-Za-z0-9]{3,32}$` | String getThresholdUnit() | setThresholdUnit(String thresholdUnit) |
+
+## Example
+
+```java
+import com.verizon.thingspace.models.DataTriggerRequest;
+
+DataTriggerRequest dataTriggerRequest = new DataTriggerRequest.Builder()
+    .comparator("comparator2")
+    .threshold(100)
+    .thresholdUnit("thresholdUnit6")
+    .build();
+```
+

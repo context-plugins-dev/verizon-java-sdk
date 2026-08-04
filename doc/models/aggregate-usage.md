@@ -1,0 +1,34 @@
+
+# Aggregate Usage
+
+## Structure
+
+`AggregateUsage`
+
+## Fields
+
+| Name | Type | Tags | Description | Getter | Setter |
+|  --- | --- | --- | --- | --- | --- |
+| `DeviceId` | [`GIODeviceId`](../../doc/models/gio-device-id.md) | Optional | - | GIODeviceId getDeviceId() | setDeviceId(GIODeviceId deviceId) |
+| `AccountName` | `String` | Optional | The numeric name of the account, in the format "0000123456-00001". Leading zeros must be included.<br><br>**Constraints**: *Minimum Length*: `3`, *Maximum Length*: `32`, *Pattern*: `^[A-Za-z0-9]{3,32}$` | String getAccountName() | setAccountName(String accountName) |
+| `StartTime` | `String` | Optional | The start date of the time period queried as "$datetime"<br><br>**Constraints**: *Minimum Length*: `3`, *Maximum Length*: `32`, *Pattern*: `^[A-Za-z0-9]{3,32}$` | String getStartTime() | setStartTime(String startTime) |
+| `EndTime` | `String` | Optional | The end date of the time period being queried as "$datetime"<br><br>**Constraints**: *Minimum Length*: `3`, *Maximum Length*: `32`, *Pattern*: `^[A-Za-z0-9]{3,32}$` | String getEndTime() | setEndTime(String endTime) |
+
+## Example
+
+```java
+import com.verizon.thingspace.models.AggregateUsage;
+import com.verizon.thingspace.models.GIODeviceId;
+
+AggregateUsage aggregateUsage = new AggregateUsage.Builder()
+    .deviceId(new GIODeviceId.Builder(
+        "kind8",
+        "id0"
+    )
+    .build())
+    .accountName("accountName6")
+    .startTime("startTime8")
+    .endTime("endTime4")
+    .build();
+```
+

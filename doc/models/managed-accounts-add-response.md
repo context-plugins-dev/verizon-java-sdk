@@ -1,0 +1,33 @@
+
+# Managed Accounts Add Response
+
+## Structure
+
+`ManagedAccountsAddResponse`
+
+## Fields
+
+| Name | Type | Tags | Description | Getter | Setter |
+|  --- | --- | --- | --- | --- | --- |
+| `TxId` | `String` | Optional | Transaction identifier | String getTxId() | setTxId(String txId) |
+| `StatusList` | [`List<StatusList>`](../../doc/models/status-list.md) | Optional | - | List<StatusList> getStatusList() | setStatusList(List<StatusList> statusList) |
+
+## Example
+
+```java
+import com.verizon.thingspace.models.ManagedAccountsAddResponse;
+import com.verizon.thingspace.models.StatusList;
+import java.util.Arrays;
+
+ManagedAccountsAddResponse managedAccountsAddResponse = new ManagedAccountsAddResponse.Builder()
+    .txId("2c90bd28-eeee-ffff-gggg-7e3bd4fbff33")
+    .statusList(Arrays.asList(
+        new StatusList.Builder()
+            .id("id6")
+            .status("status8")
+            .reason("reason8")
+            .build()
+    ))
+    .build();
+```
+

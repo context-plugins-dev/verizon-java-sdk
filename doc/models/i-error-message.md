@@ -1,0 +1,33 @@
+
+# I Error Message
+
+Error message.
+
+## Structure
+
+`IErrorMessage`
+
+## Fields
+
+| Name | Type | Tags | Description | Getter | Setter |
+|  --- | --- | --- | --- | --- | --- |
+| `ErrorCode` | [`ErrorResponseCodeEnum`](../../doc/models/error-response-code-enum.md) | Optional | Error Code. | ErrorResponseCodeEnum getErrorCode() | setErrorCode(ErrorResponseCodeEnum errorCode) |
+| `ErrorMessage` | `String` | Optional | Details and additional information about the error code. | String getErrorMessage() | setErrorMessage(String errorMessage) |
+| `HttpStatusCode` | [`HttpStatusCodeEnum`](../../doc/models/http-status-code-enum.md) | Optional | HTML error code and description. | HttpStatusCodeEnum getHttpStatusCode() | setHttpStatusCode(HttpStatusCodeEnum httpStatusCode) |
+| `DetailErrorMessage` | `String` | Optional | More detail and information about the HTML error code. | String getDetailErrorMessage() | setDetailErrorMessage(String detailErrorMessage) |
+
+## Example
+
+```java
+import com.verizon.thingspace.models.ErrorResponseCodeEnum;
+import com.verizon.thingspace.models.HttpStatusCodeEnum;
+import com.verizon.thingspace.models.IErrorMessage;
+
+IErrorMessage iErrorMessage = new IErrorMessage.Builder()
+    .errorCode(ErrorResponseCodeEnum.UNAUTHORIZED)
+    .errorMessage("errorMessage4")
+    .httpStatusCode(HttpStatusCodeEnum.ENUM_200_OK)
+    .detailErrorMessage("detailErrorMessage4")
+    .build();
+```
+

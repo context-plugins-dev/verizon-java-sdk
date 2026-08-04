@@ -1,0 +1,114 @@
+# Diagnostics History
+
+```java
+DiagnosticsHistoryController diagnosticsHistoryController = client.getDiagnosticsHistoryController();
+```
+
+## Class Name
+
+`DiagnosticsHistoryController`
+
+
+# Get Diagnostics History
+
+This endpoint allows the user to get the history data.
+
+```java
+CompletableFuture<ApiResponse<List<History>>> getDiagnosticsHistoryAsync(
+    final HistorySearchRequest body)
+```
+
+## Authentication
+
+This endpoint requires [thingspace_oauth](../../doc/auth/oauth-2-client-credentials-grant.md) **AND** [VZ-M2M-Token](../../doc/auth/custom-header-signature.md)
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `body` | [`HistorySearchRequest`](../../doc/models/history-search-request.md) | Body, Required | History data information. |
+
+## Server
+
+`Server.DEVICE_DIAGNOSTICS`
+
+## Response Type
+
+**200**: History search response.
+
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `getResult()` getter of this instance returns the response data which is of type [`List<History>`](../../doc/models/history.md).
+
+## Example Usage
+
+```java
+HistorySearchRequest body = new HistorySearchRequest.Builder(
+    new HistorySearchFilter.Builder(
+        "0000123456-00001",
+        new Device.Builder(
+            "15-digit IMEI",
+            "IMEI"
+        )
+        .build()
+    )
+    .attributes(new HistorySearchFilterAttributes.Builder()
+            .name(AttributeIdentifierEnum.LINK_QUALITY)
+            .build())
+    .build()
+)
+.build();
+
+diagnosticsHistoryController.getDiagnosticsHistoryAsync(body).thenAccept(result -> {
+    // TODO success callback handler
+    System.out.println(result);
+}).exceptionally(exception -> {
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof DeviceDiagnosticsResultException) {
+        DeviceDiagnosticsResultException deviceDiagnosticsResultException = (DeviceDiagnosticsResultException) cause;
+        deviceDiagnosticsResultException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
+    return null;
+});
+```
+
+## Example Response *(as JSON)*
+
+```json
+[
+  {
+    "accountName": "0000123456-00001",
+    "attributes": {
+      "createdOn": "2022-02-10T16:02:21.406Z",
+      "name": "LINK_QUALITY",
+      "value": "47"
+    },
+    "device": {
+      "id": "15-digit IMEI",
+      "kind": "IMEI"
+    }
+  },
+  {
+    "accountName": "0000123456-00001",
+    "attributes": {
+      "createdOn": "2022-02-10T16:02:05.316Z",
+      "name": "LINK_QUALITY",
+      "value": "47"
+    },
+    "device": {
+      "id": "15-digit IMEI",
+      "kind": "IMEI"
+    }
+  }
+]
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| Default | Error response. | [`DeviceDiagnosticsResultException`](../../doc/models/device-diagnostics-result-exception.md) |
+

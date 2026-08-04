@@ -1,0 +1,26 @@
+
+# ESIM Rest Error Response Exception
+
+## Structure
+
+`ESIMRestErrorResponseException`
+
+## Fields
+
+| Name | Type | Tags | Description | Getter | Setter |
+|  --- | --- | --- | --- | --- | --- |
+| `ErrorCode` | `String` | Optional | - | String getErrorCode() | setErrorCode(String errorCode) |
+| `ErrorMessage` | `String` | Optional | - | String getErrorMessage() | setErrorMessage(String errorMessage) |
+
+## Example
+
+```java
+try {
+    // make the API call
+} catch (ESIMRestErrorResponseException e) {
+    e.printStackTrace();
+} catch (ApiException e) {
+    e.printStackTrace();
+}
+```
+

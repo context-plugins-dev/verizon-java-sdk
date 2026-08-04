@@ -1,0 +1,25 @@
+
+# Network Type Object
+
+Network type.
+
+## Structure
+
+`NetworkTypeObject`
+
+## Fields
+
+| Name | Type | Tags | Description | Getter | Setter |
+|  --- | --- | --- | --- | --- | --- |
+| `NetworkType` | `String` | Optional | **Constraints**: *Minimum Length*: `3`, *Maximum Length*: `32`, *Pattern*: `^[A-Za-z0-9]{3,32}$` | String getNetworkType() | setNetworkType(String networkType) |
+
+## Example
+
+```java
+import com.verizon.thingspace.models.NetworkTypeObject;
+
+NetworkTypeObject networkTypeObject = new NetworkTypeObject.Builder()
+    .networkType("LTE")
+    .build();
+```
+

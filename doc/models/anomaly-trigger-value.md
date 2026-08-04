@@ -1,0 +1,46 @@
+
+# Anomaly Trigger Value
+
+Trigger details.
+
+## Structure
+
+`AnomalyTriggerValue`
+
+## Fields
+
+| Name | Type | Tags | Description | Getter | Setter |
+|  --- | --- | --- | --- | --- | --- |
+| `TriggerId` | `String` | Optional | The system assigned name of the trigger being updated. | String getTriggerId() | setTriggerId(String triggerId) |
+| `TriggerName` | `String` | Optional | The user defined name of the trigger. | String getTriggerName() | setTriggerName(String triggerName) |
+| `OrganizationName` | `String` | Optional | The user assigned name of the organization associated with the trigger. | String getOrganizationName() | setOrganizationName(String organizationName) |
+| `TriggerCategory` | `String` | Optional | This is the value to use in the request body to detect anomalous behaivior. The values in this table will only be relevant when this parameter is set to this value. | String getTriggerCategory() | setTriggerCategory(String triggerCategory) |
+| `TriggerAttributes` | [`List<TriggerAttributesOptions2>`](../../doc/models/containers/trigger-attributes-options-2.md) | Optional | Additional details and keys for the trigger. | List<TriggerAttributesOptions2> getTriggerAttributes() | setTriggerAttributes(List<TriggerAttributesOptions2> triggerAttributes) |
+| `CreatedAt` | `String` | Optional | Timestamp for whe the trigger was created. | String getCreatedAt() | setCreatedAt(String createdAt) |
+| `ModifiedAt` | `String` | Optional | Timestamp for the most recent time the trigger was modified. | String getModifiedAt() | setModifiedAt(String modifiedAt) |
+
+## Example
+
+```java
+import com.verizon.thingspace.models.AnomalyTriggerValue;
+import com.verizon.thingspace.models.NotificationGroupNameTriggerAttribute;
+import com.verizon.thingspace.models.containers.TriggerAttributesOptions2;
+import java.util.Arrays;
+
+AnomalyTriggerValue anomalyTriggerValue = new AnomalyTriggerValue.Builder()
+    .triggerId("BE1B5958-3E11-41DB-9ABD-B1B7618C0035")
+    .triggerName("Anomaly Daily Usage REST Test-1")
+    .organizationName("AnamolyDetectionRTRTest")
+    .triggerCategory("UsageAnomaly")
+    .triggerAttributes(Arrays.asList(
+        TriggerAttributesOptions2.fromNotificationGroupNameTriggerAttribute(
+            new NotificationGroupNameTriggerAttribute.Builder()
+                .key("DataPercentage50")
+                .build()
+        )
+    ))
+    .createdAt("2021-10-21T23:57:03.397.0000Z")
+    .modifiedAt("2021-10-21T23:57:03.397.0000Z")
+    .build();
+```
+
