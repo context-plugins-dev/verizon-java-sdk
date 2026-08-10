@@ -29,9 +29,9 @@ Usage usage = new Usage.Builder()
     .bytesUsed(4096L)
     .extendedAttributes(Arrays.asList(
         new CustomFields.Builder(
-            "MoSms",
-            "0"
+            "MoSms"
         )
+        .value("0")
         .build()
     ))
     .servicePlan("servicePlan2")

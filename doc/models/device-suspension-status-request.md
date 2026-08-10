@@ -47,19 +47,19 @@ DeviceSuspensionStatusRequest deviceSuspensionStatusRequest = new DeviceSuspensi
         .servicePlan("servicePlan6")
         .customFields(Arrays.asList(
             new CustomFields.Builder(
-                "key0",
-                "value2"
+                "key0"
             )
+            .value("value2")
             .build(),
             new CustomFields.Builder(
-                "key0",
-                "value2"
+                "key0"
             )
+            .value("value2")
             .build(),
             new CustomFields.Builder(
-                "key0",
-                "value2"
+                "key0"
             )
+            .value("value2")
             .build()
         ))
         .build())

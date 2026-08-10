@@ -34,19 +34,19 @@ SMSSendRequest sMSSendRequest = new SMSSendRequest.Builder(
 )
 .customFields(Arrays.asList(
         new CustomFields.Builder(
-            "key0",
-            "value2"
+            "key0"
         )
+        .value("value2")
         .build(),
         new CustomFields.Builder(
-            "key0",
-            "value2"
+            "key0"
         )
+        .value("value2")
         .build(),
         new CustomFields.Builder(
-            "key0",
-            "value2"
+            "key0"
         )
+        .value("value2")
         .build()
     ))
 .dataEncoding("dataEncoding4")

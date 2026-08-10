@@ -36,9 +36,9 @@ DevicePrlListRequest devicePrlListRequest = new DevicePrlListRequest.Builder()
     .accountName("101234-0001")
     .customFields(Arrays.asList(
         new CustomFields.Builder(
-            "key0",
-            "value2"
+            "key0"
         )
+        .value("value2")
         .build()
     ))
     .groupName("West Region")

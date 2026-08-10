@@ -81,9 +81,9 @@ CarrierActivateRequest carrierActivateRequest = new CarrierActivateRequest.Build
 .costCenterCode("costCenterCode6")
 .customFields(Arrays.asList(
         new CustomFields.Builder(
-            "CustomField2",
-            "SuperVend"
+            "CustomField2"
         )
+        .value("SuperVend")
         .build()
     ))
 .groupName("4G West")

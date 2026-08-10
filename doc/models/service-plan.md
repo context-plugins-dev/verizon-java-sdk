@@ -29,9 +29,9 @@ ServicePlan servicePlan = new ServicePlan.Builder()
     .code("M2MSHR5GB")
     .extendedAttributes(Arrays.asList(
         new CustomFields.Builder(
-            "key8",
-            "value0"
+            "key8"
         )
+        .value("value0")
         .build()
     ))
     .name("2MSHR5GB")

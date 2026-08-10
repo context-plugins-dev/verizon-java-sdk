@@ -29,9 +29,9 @@ DeviceFilter deviceFilter = new DeviceFilter.Builder()
     .servicePlan("servicePlan6")
     .customFields(Arrays.asList(
         new CustomFields.Builder(
-            "CustomField1",
-            "East Region Trucks"
+            "CustomField1"
         )
+        .value("East Region Trucks")
         .build()
     ))
     .build();

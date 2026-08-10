@@ -110,9 +110,9 @@ CarrierActivateRequest body = new CarrierActivateRequest.Builder(
 .accountName("0868924207-00001")
 .customFields(Arrays.asList(
         new CustomFields.Builder(
-            "CustomField2",
-            "SuperVend"
+            "CustomField2"
         )
+        .value("SuperVend")
         .build()
     ))
 .groupName("4G West")
@@ -234,9 +234,9 @@ AddDevicesRequest body = new AddDevicesRequest.Builder(
 .accountName("0000123456-00001")
 .customFields(Arrays.asList(
         new CustomFields.Builder(
-            "CustomField2",
-            "SuperVend"
+            "CustomField2"
         )
+        .value("SuperVend")
         .build()
     ))
 .groupName("West Region")
@@ -421,14 +421,14 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 CustomFieldsUpdateRequest body = new CustomFieldsUpdateRequest.Builder()
     .customFieldsToUpdate(Arrays.asList(
         new CustomFields.Builder(
-            "CustomField1",
-            "West Region"
+            "CustomField1"
         )
+        .value("West Region")
         .build(),
         new CustomFields.Builder(
-            "CustomField2",
-            "Distribution"
+            "CustomField2"
         )
+        .value("Distribution")
         .build()
     ))
     .devices(Arrays.asList(

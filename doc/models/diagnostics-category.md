@@ -25,9 +25,9 @@ DiagnosticsCategory diagnosticsCategory = new DiagnosticsCategory.Builder()
     .categoryName("Connectivity")
     .extendedAttributes(Arrays.asList(
         new CustomFields.Builder(
-            "Connected",
-            "false"
+            "Connected"
         )
+        .value("false")
         .build()
     ))
     .build();

@@ -37,21 +37,19 @@ MoveDeviceRequest moveDeviceRequest = new MoveDeviceRequest.Builder(
         .servicePlan("servicePlan6")
         .customFields(Arrays.asList(
             new CustomFields.Builder(
-                "CustomField1",
-                "East Region Trucks"
+                "CustomField1"
             )
+            .value("East Region Trucks")
             .build()
         ))
         .build())
 .customFields(Arrays.asList(
         null,
         new CustomFields.Builder(
-            null,
             null
         )
         .build(),
         new CustomFields.Builder(
-            null,
             null
         )
         .build()

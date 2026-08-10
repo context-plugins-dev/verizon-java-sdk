@@ -27,9 +27,9 @@ DeviceExtendedDiagnosticsResult deviceExtendedDiagnosticsResult = new DeviceExte
             .categoryName("Connectivity")
             .extendedAttributes(Arrays.asList(
                 new CustomFields.Builder(
-                    "Connected",
-                    "false"
+                    "Connected"
                 )
+                .value("false")
                 .build()
             ))
             .build()

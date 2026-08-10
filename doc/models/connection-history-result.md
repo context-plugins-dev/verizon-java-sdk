@@ -27,14 +27,14 @@ ConnectionHistoryResult connectionHistoryResult = new ConnectionHistoryResult.Bu
         new ConnectionEvent.Builder()
             .connectionEventAttributes(Arrays.asList(
                 new CustomFields.Builder(
-                    "BytesUsed",
-                    "0"
+                    "BytesUsed"
                 )
+                .value("0")
                 .build(),
                 new CustomFields.Builder(
-                    "Event",
-                    "Start"
+                    "Event"
                 )
+                .value("Start")
                 .build()
             ))
             .extendedAttributes(Arrays.asList(
@@ -45,19 +45,19 @@ ConnectionHistoryResult connectionHistoryResult = new ConnectionHistoryResult.Bu
         new ConnectionEvent.Builder()
             .connectionEventAttributes(Arrays.asList(
                 new CustomFields.Builder(
-                    "BytesUsed",
-                    "419863234"
+                    "BytesUsed"
                 )
+                .value("419863234")
                 .build(),
                 new CustomFields.Builder(
-                    "Event",
-                    "Stop"
+                    "Event"
                 )
+                .value("Stop")
                 .build(),
                 new CustomFields.Builder(
-                    "Msisdn",
-                    "15086303371"
+                    "Msisdn"
                 )
+                .value("15086303371")
                 .build()
             ))
             .extendedAttributes(Arrays.asList(

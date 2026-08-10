@@ -34,14 +34,14 @@ DeviceCostCenterRequest deviceCostCenterRequest = new DeviceCostCenterRequest.Bu
     .costCenter("cc12345")
     .customFields(Arrays.asList(
         new CustomFields.Builder(
-            "key0",
-            "value2"
+            "key0"
         )
+        .value("value2")
         .build(),
         new CustomFields.Builder(
-            "key0",
-            "value2"
+            "key0"
         )
+        .value("value2")
         .build()
     ))
     .devices(Arrays.asList(

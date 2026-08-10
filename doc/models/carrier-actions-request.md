@@ -32,12 +32,10 @@ CarrierActionsRequest carrierActionsRequest = new CarrierActionsRequest.Builder(
     .customFields(Arrays.asList(
         null,
         new CustomFields.Builder(
-            null,
             null
         )
         .build(),
         new CustomFields.Builder(
-            null,
             null
         )
         .build()

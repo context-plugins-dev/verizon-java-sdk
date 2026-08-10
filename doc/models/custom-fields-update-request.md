@@ -32,26 +32,24 @@ CustomFieldsUpdateRequest customFieldsUpdateRequest = new CustomFieldsUpdateRequ
     .customFields(Arrays.asList(
         null,
         new CustomFields.Builder(
-            null,
             null
         )
         .build(),
         new CustomFields.Builder(
-            null,
             null
         )
         .build()
     ))
     .customFieldsToUpdate(Arrays.asList(
         new CustomFields.Builder(
-            "CustomField1",
-            "West Region"
+            "CustomField1"
         )
+        .value("West Region")
         .build(),
         new CustomFields.Builder(
-            "CustomField2",
-            "Distribution"
+            "CustomField2"
         )
+        .value("Distribution")
         .build()
     ))
     .devices(Arrays.asList(

@@ -51,9 +51,9 @@ SMSSendRequest body = new SMSSendRequest.Builder(
 )
 .customFields(Arrays.asList(
         new CustomFields.Builder(
-            "CustomField1",
-            "value of the field"
+            "CustomField1"
         )
+        .value("value of the field")
         .build()
     ))
 .dataEncoding("optional 7 or 8-bit encoding")

@@ -59,14 +59,14 @@ CarrierDeactivateRequest carrierDeactivateRequest = new CarrierDeactivateRequest
 )
 .customFields(Arrays.asList(
         new CustomFields.Builder(
-            "key0",
-            "value2"
+            "key0"
         )
+        .value("value2")
         .build(),
         new CustomFields.Builder(
-            "key0",
-            "value2"
+            "key0"
         )
+        .value("value2")
         .build()
     ))
 .etfWaiver(true)

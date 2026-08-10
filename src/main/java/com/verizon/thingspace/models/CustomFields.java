@@ -7,6 +7,7 @@
 package com.verizon.thingspace.models;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 /**
@@ -60,6 +61,7 @@ public class CustomFields {
      * @return Returns the String
      */
     @JsonGetter("value")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public String getValue() {
         return value;
     }
@@ -89,7 +91,8 @@ public class CustomFields {
      * @return a new {@link CustomFields.Builder} object
      */
     public Builder toBuilder() {
-        Builder builder = new Builder(key, value);
+        Builder builder = new Builder(key)
+                .value(getValue());
         return builder;
     }
 
@@ -109,11 +112,9 @@ public class CustomFields {
         /**
          * Initialization constructor.
          * @param  key  String value for key.
-         * @param  value  String value for value.
          */
-        public Builder(String key, String value) {
+        public Builder(String key) {
             this.key = key;
-            this.value = value;
         }
 
         /**

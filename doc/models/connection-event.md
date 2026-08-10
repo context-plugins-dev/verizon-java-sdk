@@ -25,14 +25,14 @@ import java.util.Arrays;
 ConnectionEvent connectionEvent = new ConnectionEvent.Builder()
     .connectionEventAttributes(Arrays.asList(
         new CustomFields.Builder(
-            "BytesUsed",
-            "0"
+            "BytesUsed"
         )
+        .value("0")
         .build(),
         new CustomFields.Builder(
-            "Event",
-            "Start"
+            "Event"
         )
+        .value("Start")
         .build()
     ))
     .extendedAttributes(Arrays.asList(

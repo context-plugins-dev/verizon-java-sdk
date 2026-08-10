@@ -68,9 +68,9 @@ AddDevicesRequest addDevicesRequest = new AddDevicesRequest.Builder(
 .accountName("0000123456-00001")
 .customFields(Arrays.asList(
         new CustomFields.Builder(
-            "CustomField2",
-            "SuperVend"
+            "CustomField2"
         )
+        .value("SuperVend")
         .build()
     ))
 .groupName("West Region")

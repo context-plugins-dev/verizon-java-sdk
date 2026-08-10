@@ -12,7 +12,7 @@ Custom data that can be included using key-value pairs.
 | Name | Type | Tags | Description | Getter | Setter |
 |  --- | --- | --- | --- | --- | --- |
 | `Key` | `String` | Required | The key for an extended attribute. | String getKey() | setKey(String key) |
-| `Value` | `String` | Required | The value of an extended attribute. | String getValue() | setValue(String value) |
+| `Value` | `String` | Optional | The value of an extended attribute. | String getValue() | setValue(String value) |
 
 ## Example
 
@@ -20,9 +20,9 @@ Custom data that can be included using key-value pairs.
 import com.verizon.thingspace.models.CustomFields;
 
 CustomFields customFields = new CustomFields.Builder(
-    "CustomField2",
-    "SuperVend"
+    "CustomField2"
 )
+.value("SuperVend")
 .build();
 ```
 
